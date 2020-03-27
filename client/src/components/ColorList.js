@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
-
+import AddColorForm from './AddColorForm'
 const initialColor = {
   color: "",
   code: { hex: "" }
@@ -10,6 +10,7 @@ const ColorList = ({ colors, updateColors, getColors }) => {
   console.log('top log', colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+
 
   const editColor = color => {
     setEditing(true);
@@ -91,8 +92,13 @@ const ColorList = ({ colors, updateColors, getColors }) => {
           </div>
         </form>
       )}
+      {editing ? (
+        null
+      ) : (
+          <AddColorForm colors={colors} getColors={getColors} />
+        )}
       <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+
     </div>
   );
 };
